@@ -1,5 +1,5 @@
 TOP = test
-PART = xc7a50tfgg484-1
+PART = xc7a50tfgg484-2
 
 LDLIBS = -lokFrontPanel
 CXX = g++
@@ -14,9 +14,10 @@ run: rtl load
 rtl: $(TOP).bit
 	
 test.bit: 
-	vivado -nojournal -nolog -mode batch -source tcl/create.tcl -tclargs $(TOP) $(PART)   
+	vivado -nojournal -nolog -mode batch -source tcl/bit.tcl -tclargs $(TOP) $(PART)   
 	# Remove annoying file (keep for debugging)
-	rm -f clockInfo.txt
+	# rm -f clockInfo.txt
 
 clean:   
-	rm -f load/load_bitstream $(TOP).bit $(TOP).dcp *.txt
+	rm -f load/load_bitstream $(TOP).bit
+	rm -rf reports checkpoints
